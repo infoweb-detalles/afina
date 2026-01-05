@@ -94,7 +94,7 @@ body { background-color: #f9f9f9; height: 100vh; overflow: hidden; display: flex
 
 /* ================= FORMULARIO (GRID SYSTEM) ================= */
 .form-card {
-    background-color: var(--gray-bg);
+   
     padding: 30px;
     width: 100%;
 }
@@ -263,3 +263,167 @@ select.material-input { appearance: none; }
             color: #ccc;
             font-weight: 400;
         }
+
+        /* --- ESTILOS PIXEL-PERFECT AFINIA --- */
+
+/* Contenedor Filtros */
+.filters-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 10px 0 20px 10px;
+    flex-wrap: wrap;
+}
+
+.nic-label-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.nic-static-label { font-weight: 700; color: #333; font-size: 14px; }
+.nic-line { width: 100px; height: 1px; background: #e0e0e0; }
+
+/* Checkboxes personalizados (Cuadrados grises vacíos) */
+.checkbox-group { display: flex; gap: 20px; flex-wrap: wrap; }
+.custom-checkbox-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 14px; color: #666; cursor: default;
+}
+.custom-checkbox-label input { display: none; }
+.checkmark-box {
+    width: 18px; height: 18px;
+    border: 2px solid #ccc; /* Borde gris como la imagen */
+    background: #fff;
+    border-radius: 2px;
+}
+
+/* --- TABLA --- */
+.table-scroll-wrapper {
+    overflow-x: auto;
+    position: relative;
+    border-top: 1px solid #eee;
+    padding-bottom: 20px; /* Espacio para scrollbar */
+}
+
+.afinia-table-pro {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1100px; /* Fuerza el ancho en desktop */
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Encabezados */
+.afinia-table-pro th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    color: #777; /* Gris medio */
+    padding: 15px 10px;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+    background: #fff;
+}
+
+.header-check {
+    width: 16px; height: 16px;
+    border: 2px solid #888;
+    border-radius: 2px;
+}
+
+/* Flechas naranjas pequeñas de ordenamiento */
+.tiny-arrow {
+    display: inline-block;
+    width: 0; height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+.tiny-arrow.up { border-bottom: 5px solid #ff9800; } /* Naranja exacto */
+.tiny-arrow.down { border-top: 5px solid #ff9800; }
+
+/* Celdas del cuerpo */
+.afinia-table-pro td {
+    padding: 12px 10px;
+    color: #333;
+    font-size: 13px;
+    border-bottom: 1px solid #f9f9f9;
+    vertical-align: middle;
+}
+
+/* Iconos de documento (Azul contorno) */
+.doc-icon-group { display: flex; gap: 8px; }
+.icon-doc-svg {
+    color: #587c8c; /* Azul grisáceo imagen */
+    font-size: 20px;
+}
+
+/* Círculo de Estado ($ Amarillo) */
+.status-circle-money {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 1px solid #cddc39; /* Verde lima/amarillo */
+    color: #cddc39;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* --- COLUMNA ACCIÓN (STICKY / PEGAGOSA) --- */
+/* Esto logra que el botón siempre se vea en el móvil sin scroll */
+.sticky-col {
+    position: sticky;
+    right: 0;
+    background-color: #fff; /* Tapa el contenido que pasa por debajo */
+    box-shadow: -2px 0 5px rgba(0,0,0,0.05); /* Sombra sutil para separar */
+    z-index: 10;
+    text-align: center;
+    width: 80px;
+}
+
+/* Botón PAGAR (Azul Oscuro Profundo) */
+.btn-pagar-pro {
+    background-color: #002f5d; /* Azul oscuro corporativo exacto */
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.btn-pagar-pro:hover {
+    background-color: #004080;
+}
+
+/* Footer Paginación */
+.table-footer-info {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+.pagination-icons { display: flex; align-items: center; gap: 5px; color: #ccc; }
+.page-num { color: #333; font-weight: bold; padding: 0 5px; font-size: 12px;}
+.disabled { cursor: default; }
+
+/* Checkbox fila */
+.row-check {
+    width: 16px; height: 16px;
+    border: 2px solid #999;
+    border-radius: 2px;
+    display: block;
+}
+
+/* Ajuste móvil específico */
+@media (max-width: 768px) {
+    .filters-container { gap: 10px; }
+    .custom-checkbox-label { font-size: 11px; }
+    
+    /* El contenedor hace scroll, pero el th/td con clase .sticky-col se queda quieto */
+    .afinia-table-pro th, .afinia-table-pro td {
+        white-space: nowrap; /* Evita que el texto se parta feo */
+    }
+}

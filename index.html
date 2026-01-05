@@ -3,235 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aceptación de Términos | Afinia Pagos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Afinia Pagos</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+
     <style>
-        /* ================= ESTILOS PROPIOS DE LA LANDING ================= */
-        :root {
-            --primary-blue: #0074bc; /* Azul Afinia */
-            --btn-green: #9ccc65;    /* Verde Afinia */
-            --btn-green-hover: #8bc34a;
-            --gray-bg: #eeeeee;
-            --text-gray: #555;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
-
-        body {
-            background-color: var(--gray-bg);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .terms-card {
-            background: white;
+        /* Fondo Oscuro que cubre TODA la pantalla */
+        #info-modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Fijo respecto a la ventana */
+            z-index: 999999; /* Por encima de TODO */
+            left: 0;
+            top: 0;
             width: 100%;
-            max-width: 450px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            height: 100%;
+            overflow: hidden; /* Evita scroll */
+            background-color: rgba(0,0,0,0.85); /* Fondo negro semitransparente */
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: center;     /* Centrar verticalmente */
+            backdrop-filter: blur(4px); /* Efecto borroso elegante */
         }
 
-        /* Cabecera Azul */
-        .card-header {
-            background-color: var(--primary-blue);
+        /* Clase para mostrar el modal (activada por JS) */
+        #info-modal.open-modal {
+            display: flex !important; /* Fuerza el display Flex */
+        }
+
+        /* Caja del contenido */
+        .modal-content-box {
+            background-color: #fefefe;
             padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px; /* Ancho máximo */
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+            position: relative;
             text-align: center;
+            animation: modalZoom 0.3s ease-out;
         }
 
-        .header-logo {
-            max-height: 45px;
-            filter: brightness(0) invert(1); /* Logo blanco sobre fondo azul */
+        /* Animación de entrada */
+        @keyframes modalZoom {
+            from {transform: scale(0.7); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
         }
 
-        /* Cuerpo */
-        .card-body {
-            padding: 30px;
+        /* Botón Cerrar (X) */
+        .close-modal-x {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close-modal-x:hover,
+        .close-modal-x:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
         }
 
-        h2 {
-            color: #333;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        /* Caja de texto legal con scroll */
-        .terms-box {
-            background-color: #f9f9f9;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            padding: 15px;
-            height: 150px;
-            overflow-y: auto;
-            font-size: 13px;
-            color: #666;
+        /* Imagen dentro del modal */
+        .modal-body-img {
+            margin-top: 20px;
             margin-bottom: 20px;
-            line-height: 1.5;
-            text-align: justify;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
         
-        /* Scrollbar fina */
-        .terms-box::-webkit-scrollbar { width: 6px; }
-        .terms-box::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 3px; }
-
-        /* Checkbox Container */
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .checkbox-container input {
-            display: none; /* Ocultamos el input nativo */
-        }
-
-        /* Checkbox personalizado */
-        .checkmark {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #aaa;
-            border-radius: 3px;
-            margin-right: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        /* Estado Checked */
-        .checkbox-container input:checked + .checkmark {
-            background-color: var(--primary-blue);
-            border-color: var(--primary-blue);
-        }
-
-        .checkmark::after {
-            content: 'check';
-            font-family: 'Material Icons';
-            color: white;
-            font-size: 16px;
-            display: none;
-        }
-
-        .checkbox-container input:checked + .checkmark::after {
+        .full-width-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
             display: block;
         }
 
-        .checkbox-label {
-            font-size: 14px;
-            color: #444;
-        }
-
-        /* Botón */
-        .btn-submit {
-            width: 100%;
-            padding: 12px;
+        /* Botón Aceptar */
+        #btn-accept-modal {
+            background-color: #008eb2;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             font-size: 16px;
             font-weight: bold;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-            text-transform: uppercase;
+            transition: background-color 0.3s;
         }
-
-        /* Estilos del botón habilitado/deshabilitado */
-        .btn-submit:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-            color: #fff;
+        #btn-accept-modal:hover {
+            background-color: #006c88;
         }
-
-        .btn-submit:not(:disabled) {
-            background-color: var(--btn-green);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .btn-submit:not(:disabled):hover {
-            background-color: var(--btn-green-hover);
-        }
-
-        .footer-copy {
-            text-align: center;
-            font-size: 11px;
-            color: #999;
-            margin-top: 20px;
-        }
-
     </style>
 </head>
 <body>
 
-    <div class="terms-card">
-        <div class="card-header">
-            <img src="img/afinialogo2.png" alt="Afinia Logo" class="header-logo">
+    <div id="info-modal">
+        <div class="modal-content-box">
+            <span class="close-modal-x" id="btn-close-x">&times;</span>
+            <div class="modal-body-img">
+                <img src="img/banner.jpg" style="width: 80%;" alt="Información Importante" class="full-width-img" 
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<h3 style=\'color:#333\'>Aviso Importante</h3><p>Por favor tenga a mano su factura para consultar el NIC.</p>'">
+            </div>
+            <div class="modal-footer-btn">
+                <button id="btn-accept-modal">ACEPTAR</button>
+            </div>
         </div>
+    </div>
 
-        <div class="card-body">
-            <h2>Términos y Condiciones</h2>
-            
-            <div class="terms-box">
-                <p><strong>Política de Tratamiento de Datos Personales y Uso del Portal Transaccional.</strong></p>
-                <br>
-                <p>Al acceder a este portal de pagos, usted autoriza a AFINIA (filial del Grupo EPM) para el tratamiento de sus datos personales con el fin de procesar sus pagos de servicios públicos de energía eléctrica.</p>
-                <br>
-                <p>1. <strong>Seguridad:</strong> Todas las transacciones realizadas en este sitio están protegidas bajo protocolos de seguridad bancaria.</p>
-                <p>2. <strong>Veracidad:</strong> El usuario declara que la información suministrada (NIC, Documento de Identidad) es veraz y corresponde al titular del servicio.</p>
-                <p>3. <strong>Procesamiento:</strong> Los pagos pueden tardar hasta 24 horas en verse reflejados en el sistema comercial.</p>
-                <br>
-                <p>Para continuar, debe aceptar los términos de uso y la política de privacidad de la plataforma.</p>
+    <div class="menu-overlay" id="menu-overlay"></div>
+
+    <div id="full-loader" class="full-loader hidden">
+        <div class="loader-content">
+            <div class="spinner-large"></div>
+            <h2 id="loader-title">Procesando solicitud...</h2>
+            <p id="loader-text">Por favor espere, no cierre la ventana.</p>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-left">
+            <button class="menu-btn" id="menu-toggle">
+                <span class="material-icons">menu</span>
+            </button>
+            <div class="logo-container">
+                <img src="img/logo-afinia.png" alt="Afinia Logo" class="header-logo">
+            </div>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item">
+                    <span class="material-icons">home</span>
+                    <span class="nav-text">INICIO PORTAL DE PAGOS</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <span class="material-icons">credit_card</span>
+                    <span class="nav-text">PAGAR</span>
+                </a>
+                <a href="#" class="nav-item"><span class="material-icons">lock</span><span class="nav-text">RECUPERAR CUENTA</span></a>
+                <a href="#" class="nav-item"><span class="material-icons">lock_open</span><span class="nav-text">RECUPERAR CONTRASEÑA</span></a>
+                <a href="#" class="nav-item"><span class="material-icons">search</span><span class="nav-text">DUPLICADOS</span></a>
+                <a href="#" class="nav-item"><span class="material-icons">person_add</span><span class="nav-text">REGISTRO USUARIO</span></a>
+                <div class="nav-divider"></div>
+                <a href="#" class="nav-item has-arrow">
+                    <div class="nav-content"><span class="material-icons">description</span><span class="nav-text">FACTURA DIGITAL</span></div>
+                    <span class="material-icons arrow-icon">chevron_left</span>
+                </a>
+                <a href="#" class="nav-item"><span class="material-icons">edit</span><span class="nav-text">PQR'S</span></a>
+                <a href="#" class="nav-item"><span class="material-icons">monetization_on</span><span class="nav-text">RECARGA</span></a>
+            </nav>
+            <div class="sidebar-footer">© 2024 FACTURE SAS BY ESTELA</div>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header-full-width">
+                <h1 class="page-title">PAGAR</h1>
             </div>
 
-            <label class="checkbox-container">
-                <input type="checkbox" id="accept-check">
-                <span class="checkmark"></span>
-                <span class="checkbox-label">He leído y acepto los términos y condiciones.</span>
-            </label>
+            <div class="scrollable-body">
+                <div class="inner-content">
+                    <div class="banner-wrapper">
+                        <img src="img/imgi_3_Banner - Pagar.jpg" alt="Banner" class="banner-img">
+                    </div>
 
-            <button id="btn-continue" class="btn-submit" disabled>
-                Continuar al Portal
-            </button>
-        </div>
+                    <p class="info-text">
+                        Te invitamos a registrarte en nuestra plataforma para que disfrutes de todas nuestras funcionalidades.
+                    </p>
+
+                    <div class="form-card">
+                        <form id="payment-form">
+                            
+                            <div class="form-row nic-row">
+                                <div class="input-group nic-input">
+                                    <label class="input-label">NIC <span class="required">*</span></label>
+                                    <input type="text" class="material-input" value="" id="input-nic" placeholder="Ingrese su NIC">
+                                </div>
+                                
+                                <div class="btn-wrapper-nic">
+                                    <button type="button" class="btn-primary" id="btn-pago-mes">PAGO MES</button>
+                                    <div class="spinner-small hidden" id="spinner-nic"></div>
+                                </div>
+                            </div>
+
+                            <div id="hidden-fields" class="hidden-section hidden">
+    
+                                <div class="filters-container">
+                                    <div class="nic-label-group">
+                                        <span class="nic-static-label">NIC</span>
+                                        <div class="nic-line"></div>
+                                    </div>
+                                    
+                                    <div class="checkbox-group">
+                                        <label class="custom-checkbox-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="checkmark-box"></span>
+                                            Mercados Especiales
+                                        </label>
+                                        <label class="custom-checkbox-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="checkmark-box"></span>
+                                            Pendiente de cobro
+                                        </label>
+                                        <label class="custom-checkbox-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="checkmark-box"></span>
+                                            Facturas en reclamo
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="table-scroll-wrapper">
+                                    <table class="afinia-table-pro">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-check"><div class="header-check"></div></th>
+                                                <th class="col-icons"></th>
+                                                
+                                                <th class="col-valor">Valor mes</th>
+                                                <th class="col-saldo">Saldo</th>
+                                                
+                                                <th class="col-estado">Estado <i class="tiny-arrow up"></i></th>
+                                                <th class="col-factura">N° de Factura</th>
+                                                <th class="col-nic">NIC <i class="tiny-arrow up"></i></th>
+                                                <th class="col-periodo">Período <i class="tiny-arrow down"></i></th>
+                                                <th class="col-vence">Vence</th>
+                                                <th class="col-consumo">Consumo (KWh)</th>
+                                                <th class="col-accion sticky-col">Accion</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="invoice-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="table-footer-info">
+                                    <div class="pagination-icons">
+                                        <span class="material-icons disabled">first_page</span>
+                                        <span class="material-icons disabled">chevron_left</span>
+                                        <span class="page-num">1</span>
+                                        <span class="material-icons disabled">chevron_right</span>
+                                        <span class="material-icons disabled">last_page</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <footer class="seo-section">
+                        <p class="powered">Powered By Facture una Marca de Estela</p>
+                        <div class="seo-links">
+                            <h2>Afinia Pagar Factura - Sistema Oficial de Afinia Pagos</h2>
+                            <h3>¿Cómo Pagar tu Factura de Afinia?</h3>
+                            <p><strong>Afinia pagar factura</strong> es el sistema oficial...</p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </main>
     </div>
-
-    <div class="footer-copy">
-        © 2024 FACTURE SAS BY ESTELA - Todos los derechos reservados.
-    </div>
-
-    <script>
-        // Lógica de habilitación del botón
-        const checkbox = document.getElementById('accept-check');
-        const button = document.getElementById('btn-continue');
-
-        checkbox.addEventListener('change', function() {
-            if (this.checked) {
-                button.disabled = false;
-            } else {
-                button.disabled = true;
-            }
-        });
-
-        // Lógica de redirección
-        button.addEventListener('click', function() {
-           
-            button.innerText = "PROCESANDO...";
-            
-            setTimeout(() => {
-                window.location.href = 'inicio.html'; 
-            }, 500); 
-        });
-    </script>
-
+    <script src="js/index.js"></script>
 </body>
 </html>
