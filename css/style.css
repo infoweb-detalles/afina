@@ -1,0 +1,265 @@
+:root {
+    --primary-blue: #0074bc;
+    --header-blue: #0074bc; /* Azul Afinia Header */
+    --btn-green: #9ccc65;
+    --btn-green-hover: #8bc34a;
+    --gray-bg: #eeeeee;
+    --sidebar-width: 260px;
+    --header-height: 70px; /* Altura del header azul */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+
+body { background-color: #f9f9f9; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+
+/* ================= HEADER AZUL (FIJO ARRIBA) ================= */
+.main-header {
+    height: var(--header-height);
+    background-color: var(--header-blue);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.header-left { display: flex; align-items: center; }
+
+.menu-btn {
+    background: none; border: none; color: white; cursor: pointer;
+    margin-right: 15px;
+}
+.menu-btn span { font-size: 28px; }
+
+.logo-container { display: flex; align-items: center; }
+.header-logo { max-height: 40px; filter: brightness(0) invert(1); /* Vuelve el logo blanco si es png transparente, o ajusta según tu logo */ }
+
+/* Contenedor Principal (Debajo del header) */
+.app-container {
+    display: flex;
+    margin-top: var(--header-height); /* Empuja contenido abajo */
+    height: calc(100vh - var(--header-height));
+    width: 100%;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+    width: var(--sidebar-width);
+    background: #fff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    /* En PC fijo, en móvil oculto */
+}
+
+.sidebar-nav { flex: 1; overflow-y: auto; padding-top: 15px; }
+
+.nav-item {
+    display: flex; align-items: center; padding: 13px 20px;
+    text-decoration: none; color: #546e7a; font-size: 13px; font-weight: 500;
+    border-left: 4px solid transparent;
+}
+.nav-item:hover { background-color: #f5f5f5; }
+.nav-item .material-icons { margin-right: 15px; color: #78909c; font-size: 22px; }
+
+/* ACTIVO */
+.nav-item.active { background-color: #fcfcfc; color: var(--primary-blue); border-left-color: var(--primary-blue); }
+.nav-item.active .material-icons { color: var(--primary-blue); }
+
+.sidebar-footer { padding: 20px; font-size: 10px; color: #999; border-top: 1px solid #eee; }
+
+/* ================= CONTENIDO PRINCIPAL ================= */
+.main-content {
+    flex: 1; display: flex; flex-direction: column; background: #fff;
+    width: 100%; position: relative;
+}
+
+.page-header-full-width {
+    width: 100%; padding: 20px 30px 0; border-bottom: 1px solid #e0e0e0;
+}
+.page-title { font-size: 16px; color: #444; padding-bottom: 15px; margin: 0; font-weight: 700; }
+
+.scrollable-body { flex: 1; overflow-y: auto; padding: 30px; }
+.inner-content { width: 100%; max-width: 1200px; margin: 0 auto; }
+
+.banner-wrapper img { width: 100%; border-radius: 4px; display: block; margin-bottom: 25px; }
+.info-text { font-size: 14px; color: #555; margin-bottom: 25px; }
+
+/* ================= FORMULARIO (GRID SYSTEM) ================= */
+.form-card {
+    background-color: var(--gray-bg);
+    padding: 30px;
+    width: 100%;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column; /* Por defecto (móvil) en columna */
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.input-group { position: relative; width: 100%; }
+.input-label { display: block; font-size: 13px; font-weight: 700; color: #555; margin-bottom: 5px; }
+.material-input {
+    width: 100%; background: transparent; border: none; border-bottom: 1px solid #aaa;
+    padding: 8px 0; font-size: 16px; color: #333; outline: none;
+}
+.material-input:focus { border-bottom: 2px solid var(--primary-blue); }
+
+/* Valor Centrado */
+.valor-pagar-container {
+    text-align: center; /* CENTRADO COMO PEDISTE */
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+.valor-label, .valor-amount { color: var(--btn-green); font-weight: bold; font-size: 18px; }
+
+/* Botones */
+.btn-primary, .btn-pagar-final {
+    background-color: var(--btn-green); color: white; border: none;
+    padding: 10px 25px; font-size: 14px; font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); cursor: pointer; border-radius: 2px;
+}
+
+/* Spinner */
+.spinner-small {
+    width: 25px; height: 25px; border: 3px solid #ccc; border-top: 3px solid #666;
+    border-radius: 50%; animation: spin 1s linear infinite; display: inline-block;
+}
+.btn-wrapper-nic { display: flex; align-items: center; gap: 10px; }
+
+/* Select Arrow */
+.select-wrapper { position: relative; }
+.select-arrow { position: absolute; right: 0; top: 5px; color: #777; pointer-events: none; }
+select.material-input { appearance: none; }
+
+/* Ocultos */
+.hidden { display: none !important; }
+.fade-in { animation: fadeIn 0.5s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* SEO Footer */
+.seo-section { margin-top: 40px; color: #666; padding-bottom: 50px; }
+.seo-section h2 { color: var(--primary-blue); font-size: 18px; margin-bottom: 10px; }
+.seo-section h3 { color: var(--primary-blue); font-size: 16px; margin-top: 20px; }
+.seo-section p { font-size: 13px; line-height: 1.5; }
+.powered { text-align: center; font-size: 12px; margin-bottom: 20px; }
+
+/* Pantalla Carga */
+.full-loader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9); z-index: 9999;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; color: white;
+}
+.spinner-large {
+    width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.3);
+    border-top: 4px solid var(--btn-green); border-radius: 50%; margin-bottom: 20px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* ================= MOBILE OVERLAY ================= */
+.menu-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1500;
+    opacity: 0; visibility: hidden; transition: 0.3s;
+}
+.menu-overlay.active { opacity: 1; visibility: visible; }
+
+/* ================= MEDIA QUERIES (ESCRITORIO vs MÓVIL) ================= */
+
+/* MÓVIL (Por defecto arriba) */
+@media (max-width: 900px) {
+    .sidebar {
+        position: fixed; top: var(--header-height); left: 0;
+        transform: translateX(-100%); /* Oculto a la izquierda */
+        height: calc(100vh - var(--header-height));
+    }
+    .sidebar.open { transform: translateX(0); }
+    
+    .scrollable-body { padding: 15px; }
+    .form-card { padding: 20px; }
+    
+    /* En móvil todo va en columna (stacked), el CSS base ya hace flex-direction: column */
+}
+
+/* ESCRITORIO (Aquí arreglamos los inputs lado a lado) */
+@media (min-width: 901px) {
+    .menu-btn { display: none; } /* Ocultar hamburguesa en PC */
+    .sidebar { transform: translateX(0); position: relative; top: 0; height: auto; }
+    
+    .menu-overlay { display: none; } /* No overlay en PC */
+
+    /* FILAS HORIZONTALES */
+    .form-row {
+        flex-direction: row; /* Elementos lado a lado */
+        align-items: flex-end; /* Alinear abajo para que el botón cuadre con la línea del input */
+    }
+
+    /* Ajuste Fila NIC */
+    .nic-input { flex: 1; } /* Input ocupa todo el espacio posible */
+    .btn-wrapper-nic { margin-bottom: 5px; } /* Ajuste fino alineación */
+
+    /* Ajuste Fila Doc + Correo */
+    .double-col .input-group { width: 50%; }
+
+    /* Ajuste Fila Banco + Botón */
+    .bank-input { flex: 1; }
+    .btn-wrapper-final { margin-bottom: 5px; }
+}
+
+ /* FIX PANTALLA DE CARGA */
+        .full-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.92); /* Fondo oscuro elegante */
+            z-index: 99999;
+            display: flex;
+            justify-content: center; /* Centrado Horizontal */
+            align-items: center;     /* Centrado Vertical */
+            color: white;
+            padding: 20px;
+        }
+
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra los hijos (spinner y texto) */
+            text-align: center;  /* Asegura que el texto multilinea se centre */
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .spinner-large {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255,255,255,0.2);
+            border-top: 5px solid #9ccc65; /* Verde Afinia */
+            border-radius: 50%;
+            margin-bottom: 30px; /* Espacio claro entre spinner y texto */
+            animation: spin 1s linear infinite;
+        }
+
+        #loader-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        #loader-text {
+            font-size: 15px;
+            color: #ccc;
+            font-weight: 400;
+        }

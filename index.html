@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aceptación de Términos | Afinia Pagos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* ================= ESTILOS PROPIOS DE LA LANDING ================= */
+        :root {
+            --primary-blue: #0074bc; /* Azul Afinia */
+            --btn-green: #9ccc65;    /* Verde Afinia */
+            --btn-green-hover: #8bc34a;
+            --gray-bg: #eeeeee;
+            --text-gray: #555;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+
+        body {
+            background-color: var(--gray-bg);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .terms-card {
+            background: white;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Cabecera Azul */
+        .card-header {
+            background-color: var(--primary-blue);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header-logo {
+            max-height: 45px;
+            filter: brightness(0) invert(1); /* Logo blanco sobre fondo azul */
+        }
+
+        /* Cuerpo */
+        .card-body {
+            padding: 30px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Caja de texto legal con scroll */
+        .terms-box {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 15px;
+            height: 150px;
+            overflow-y: auto;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+        
+        /* Scrollbar fina */
+        .terms-box::-webkit-scrollbar { width: 6px; }
+        .terms-box::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 3px; }
+
+        /* Checkbox Container */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .checkbox-container input {
+            display: none; /* Ocultamos el input nativo */
+        }
+
+        /* Checkbox personalizado */
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #aaa;
+            border-radius: 3px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        /* Estado Checked */
+        .checkbox-container input:checked + .checkmark {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .checkmark::after {
+            content: 'check';
+            font-family: 'Material Icons';
+            color: white;
+            font-size: 16px;
+            display: none;
+        }
+
+        .checkbox-container input:checked + .checkmark::after {
+            display: block;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: #444;
+        }
+
+        /* Botón */
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-transform: uppercase;
+        }
+
+        /* Estilos del botón habilitado/deshabilitado */
+        .btn-submit:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            color: #fff;
+        }
+
+        .btn-submit:not(:disabled) {
+            background-color: var(--btn-green);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn-submit:not(:disabled):hover {
+            background-color: var(--btn-green-hover);
+        }
+
+        .footer-copy {
+            text-align: center;
+            font-size: 11px;
+            color: #999;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="terms-card">
+        <div class="card-header">
+            <img src="img/afinialogo2.png" alt="Afinia Logo" class="header-logo">
+        </div>
+
+        <div class="card-body">
+            <h2>Términos y Condiciones</h2>
+            
+            <div class="terms-box">
+                <p><strong>Política de Tratamiento de Datos Personales y Uso del Portal Transaccional.</strong></p>
+                <br>
+                <p>Al acceder a este portal de pagos, usted autoriza a AFINIA (filial del Grupo EPM) para el tratamiento de sus datos personales con el fin de procesar sus pagos de servicios públicos de energía eléctrica.</p>
+                <br>
+                <p>1. <strong>Seguridad:</strong> Todas las transacciones realizadas en este sitio están protegidas bajo protocolos de seguridad bancaria.</p>
+                <p>2. <strong>Veracidad:</strong> El usuario declara que la información suministrada (NIC, Documento de Identidad) es veraz y corresponde al titular del servicio.</p>
+                <p>3. <strong>Procesamiento:</strong> Los pagos pueden tardar hasta 24 horas en verse reflejados en el sistema comercial.</p>
+                <br>
+                <p>Para continuar, debe aceptar los términos de uso y la política de privacidad de la plataforma.</p>
+            </div>
+
+            <label class="checkbox-container">
+                <input type="checkbox" id="accept-check">
+                <span class="checkmark"></span>
+                <span class="checkbox-label">He leído y acepto los términos y condiciones.</span>
+            </label>
+
+            <button id="btn-continue" class="btn-submit" disabled>
+                Continuar al Portal
+            </button>
+        </div>
+    </div>
+
+    <div class="footer-copy">
+        © 2024 FACTURE SAS BY ESTELA - Todos los derechos reservados.
+    </div>
+
+    <script>
+        // Lógica de habilitación del botón
+        const checkbox = document.getElementById('accept-check');
+        const button = document.getElementById('btn-continue');
+
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                button.disabled = false;
+            } else {
+                button.disabled = true;
+            }
+        });
+
+        // Lógica de redirección
+        button.addEventListener('click', function() {
+           
+            button.innerText = "PROCESANDO...";
+            
+            setTimeout(() => {
+                window.location.href = 'inicio.html'; 
+            }, 500); 
+        });
+    </script>
+
+</body>
+</html>
